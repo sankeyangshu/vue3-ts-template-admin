@@ -1,30 +1,20 @@
+<!--
+ * @Description: 全局根组件
+ * @Author: 王振
+ * @Date: 2021-09-23 15:14:02
+ * @LastEditors: 王振
+ * @LastEditTime: 2021-10-26 09:36:18
+-->
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view />
 </template>
 
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import './styles/reset.css';
 </style>
