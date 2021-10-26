@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-09-23 15:14:02
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 10:14:42
+ * @LastEditTime: 2021-10-26 15:03:46
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
@@ -11,6 +11,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
+    meta: {
+      title: '首页',
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/Home/Home.vue'),
   },
   {
