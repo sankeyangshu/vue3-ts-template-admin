@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 10:12:38
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 11:18:55
+ * @LastEditTime: 2021-10-26 15:38:02
 -->
 <template>
   <div class="login">
@@ -36,6 +36,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue';
+import { postLoginAPI } from '@/api/login';
+import { useStore } from 'vuex';
 
 // 表单校验
 const useCheckForm = () => {
@@ -65,6 +67,7 @@ const useCheckForm = () => {
 
 // 用户登录
 const useLoginEffect = () => {
+  const store = useStore(); // vuex仓库
   const userForm = ref(); // 表单校验节点
   const content = reactive({
     user: {
@@ -77,7 +80,10 @@ const useLoginEffect = () => {
   const OnClickLogin = () => {
     userForm.value.validate((valid: any) => {
       if (valid) {
-        console.log('校验成功');
+        postLoginAPI(content.user).then((res) => {
+          store.commit('SET_TOKEN', res.data.token);
+          store.commit('SET_USERINFO', res.data.userInfo);
+        });
       } else {
         return false;
       }
