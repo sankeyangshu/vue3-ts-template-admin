@@ -1,9 +1,9 @@
 /*
- * @Description: 封装axios方法
+ * @Description: 封装axios
  * @Author: 王振
- * @Date: 2021-09-23 15:53:42
+ * @Date: 2022-03-04 12:22:43
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 15:19:02
+ * @LastEditTime: 2022-03-04 13:51:47
  */
 
 // 导入axios
@@ -16,9 +16,9 @@ import { ElMessage } from 'element-plus';
 // 1. 创建新的axios实例
 const instance = axios.create({
   // 公共接口
-  baseURL: 'http://localhost:3000',
-  // 超时时间 单位是ms，这里设置了10s的超时时间
-  timeout: 10000,
+  baseURL: process.env.VUE_APP_BASE_URL,
+  // 超时时间 单位是ms，这里设置了5s的超时时间
+  timeout: 5000,
 });
 
 // 2. 配置请求头，全局的 axios 默认值

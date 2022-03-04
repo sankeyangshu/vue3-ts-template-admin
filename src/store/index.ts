@@ -3,16 +3,13 @@
  * @Author: 王振
  * @Date: 2021-09-23 15:14:02
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 15:26:08
+ * @LastEditTime: 2022-03-04 15:09:17
  */
 import { createStore } from 'vuex';
-import { user } from './modules';
+import user from './modules/user';
 import getters from './getters';
 
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
   modules: {
     user,
   },

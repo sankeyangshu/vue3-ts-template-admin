@@ -3,107 +3,100 @@
  * @Author: 王振
  * @Date: 2021-10-26 10:12:38
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 15:38:02
+ * @LastEditTime: 2022-03-04 15:34:10
 -->
 <template>
   <div class="login">
     <div class="login__modal">
-      <el-form ref="userForm" :model="user" status-icon :rules="rules">
+      <el-form ref="userForm" :model="loginForm" status-icon :rules="loginRules">
         <div class="login__modal__title">后台管理系统</div>
         <el-form-item prop="userName">
           <el-input
             type="text"
             prefix-icon="el-icon-user"
-            v-model="user.userName"
+            v-model="loginForm.userName"
             placeholder="请输入用户名"
           />
         </el-form-item>
-        <el-form-item prop="passWord">
+        <el-form-item prop="password">
           <el-input
             type="password"
-            prefix-icon="el-icon-view"
-            v-model="user.passWord"
+            prefix-icon="el-icon-unlock"
+            v-model="loginForm.password"
             placeholder="请输入密码"
+            show-password
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="login__modal__btn" @click="OnClickLogin">登录</el-button>
+          <el-button
+            :loading="loading"
+            type="primary"
+            class="login__modal__btn"
+            @click="OnClickLogin(userForm)"
+          >
+            登录
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue';
-import { postLoginAPI } from '@/api/login';
+<script lang="ts" setup>
+import { reactive, ref } from 'vue';
+import { validatePassword } from '@/rules';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import type { ElForm } from 'element-plus';
 
-// 表单校验
-const useCheckForm = () => {
-  const content = reactive({
-    rules: {
-      userName: [
-        {
-          required: true,
-          message: '请输入用户名',
-          trigger: 'blur',
-        },
-      ],
-      passWord: [
-        {
-          required: true,
-          message: '请输入密码',
-          trigger: 'blur',
-        },
-      ],
-    }, // 校验规则
-  });
-  const { rules } = toRefs(content);
-  return {
-    rules,
-  };
-};
+type FormInstance = InstanceType<typeof ElForm>; // 获取表单校验节点类型
 
-// 用户登录
-const useLoginEffect = () => {
-  const store = useStore(); // vuex仓库
-  const userForm = ref(); // 表单校验节点
-  const content = reactive({
-    user: {
-      userName: '', // 用户名
-      passWord: '', // 密码
-    },
-  });
-
-  // 用户点击登录
-  const OnClickLogin = () => {
-    userForm.value.validate((valid: any) => {
-      if (valid) {
-        postLoginAPI(content.user).then((res) => {
-          store.commit('SET_TOKEN', res.data.token);
-          store.commit('SET_USERINFO', res.data.userInfo);
-        });
-      } else {
-        return false;
-      }
-    });
-  };
-
-  const { user } = toRefs(content);
-  return { user, OnClickLogin, userForm };
-};
-
-export default defineComponent({
-  name: 'Login',
-  setup() {
-    // 表单校验
-    const { rules } = useCheckForm();
-    // 用户登录
-    const { user, OnClickLogin, userForm } = useLoginEffect();
-    return { rules, user, OnClickLogin, userForm };
-  },
+// 用户账户密码
+const loginForm = reactive({
+  userName: '', // 用户名
+  password: '', // 密码
 });
+
+// 登录校验规则
+const loginRules = reactive({
+  userName: [
+    {
+      required: true,
+      message: '请输入用户名',
+      trigger: 'blur',
+    },
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword,
+    },
+  ],
+});
+
+// 用户登录流程
+const store = useStore(); // vuex仓库
+const router = useRouter(); // 获取路由
+const userForm = ref<FormInstance>(); // 表单校验节点
+const loading = ref(false); // 按钮加载状态
+const OnClickLogin = (formEl: FormInstance | undefined) => {
+  // 进行表单校验
+  if (!formEl) return;
+  formEl.validate((valid) => {
+    if (valid) {
+      loading.value = true; // 按钮进入加载状态
+      // 通过验证
+      store.dispatch('user/login', loginForm).then((res) => {
+        loading.value = false;
+        router.push({ path: '/' }); // 跳转到首页
+      });
+    } else {
+      console.log('error submit!');
+      return false;
+    }
+  });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -114,6 +107,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   background-color: #f9fcff;
+  // background-color: #2d3a4b;
   &__modal {
     width: 500px;
     padding: 50px;

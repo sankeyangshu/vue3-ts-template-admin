@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:20:50
  * @LastEditors: 王振
- * @LastEditTime: 2021-10-26 15:24:05
+ * @LastEditTime: 2022-03-04 12:34:31
  */
 
 // 1.导入封装好的axios实例
@@ -19,7 +19,7 @@ import { Get, Post, Patch, Delete } from '../types'; // 接口泛型
 const get: Get = async (url, params, config) => {
   config = {
     method: 'get', // `method` 是创建请求时使用的方法
-    url: url, // `url` 是用于请求的服务器 URL
+    url, // `url` 是用于请求的服务器 URL
   };
   if (params) {
     config.params = params;
@@ -37,7 +37,7 @@ const get: Get = async (url, params, config) => {
 const post: Post = async (url, params, config) => {
   config = {
     method: 'post',
-    url: url,
+    url,
   };
   if (params) {
     config.data = params;
@@ -55,7 +55,7 @@ const post: Post = async (url, params, config) => {
 const patch: Patch = async (url, params, config) => {
   config = {
     method: 'patch',
-    url: url,
+    url,
   };
   if (params) {
     config.data = params;
@@ -73,7 +73,7 @@ const patch: Patch = async (url, params, config) => {
 const destroy: Delete = async (url, params, config) => {
   config = {
     method: 'delete',
-    url: url,
+    url,
   };
   if (params) {
     config.params = params;
