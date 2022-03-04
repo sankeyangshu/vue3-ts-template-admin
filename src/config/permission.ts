@@ -3,11 +3,11 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:04:01
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 16:40:27
+ * @LastEditTime: 2022-03-04 17:27:47
  */
 
 import router from '@/router';
-// import store from '@/store';
+import store from '@/store';
 // import { ElMessage } from 'element-plus';
 import NProgress from 'nprogress'; // 进度条
 import 'nprogress/nprogress.css'; // 进度条样式
@@ -34,21 +34,21 @@ router.beforeEach((to, from, next) => {
       NProgress.done();
     } else {
       // 确定用户是否已通过getInfo获得其权限角色
-      // const hasRoles = store.getters.roles && store.getters.roles.length > 0;
-      // if (hasRoles) {
-      //   next();
-      // } else {
-      //   // TODO: 此处代码等待完善，功能未开发完成
-      //   ElMessage({
-      //     message: '出现错误，请重新登录',
-      //     type: 'error',
-      //     duration: 5 * 1000,
-      //   });
-      //   // 未获得，重定向到错误页
-      //   next(`/404?redirect=${to.path}`);
-      //   NProgress.done();
-      // }
-      next();
+      const hasRoles = store.getters.roles && store.getters.roles.length > 0;
+      if (hasRoles) {
+        next();
+      } else {
+        // TODO: 此处代码等待完善，功能未开发完成
+        // ElMessage({
+        //   message: '出现错误，请重新登录',
+        //   type: 'error',
+        //   duration: 5 * 1000,
+        // });
+        // 未获得，重定向到错误页
+        // next(`/404?redirect=${to.path}`);
+        next();
+        NProgress.done();
+      }
     }
   } else {
     // 用户未登录

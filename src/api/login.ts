@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:24:33
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 16:37:32
+ * @LastEditTime: 2022-03-04 17:05:50
  */
 
 // 导入http
@@ -13,6 +13,7 @@ import { CustomSuccessData } from '@/types';
 // api接口
 const api = {
   login: '/api/user/login',
+  userInfo: '/api/get/userInfo',
 };
 
 /**
@@ -30,4 +31,12 @@ export type loginParams = {
  */
 export async function postLoginAPI(params: loginParams): Promise<CustomSuccessData<any>> {
   return await http.post(api.login, params);
+}
+
+/**
+ * @description: 获取用户信息
+ * @return {*} 返回用户信息
+ */
+export async function getUserInfoAPI(): Promise<CustomSuccessData<any>> {
+  return await http.get(api.userInfo);
 }

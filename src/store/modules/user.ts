@@ -3,11 +3,12 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 15:00:54
+ * @LastEditTime: 2022-03-04 17:51:27
  */
-import { postLoginAPI, loginParams } from '@/api/login';
+import { postLoginAPI, loginParams, getUserInfoAPI } from '@/api/login';
 import { TOKEN } from '@/constant';
-import { setItem, getItem } from '@/utils/storage';
+import { setItem, getItem, removeAllItem } from '@/utils/storage';
+import router from '@/router';
 
 const state = {
   token: getItem(TOKEN) || '', // 用户认证token
@@ -48,6 +49,23 @@ const actions = {
           reject(error);
         });
     });
+  },
+  /**
+   * 获取用户信息
+   */
+  async getUserInfo({ commit }: any) {
+    const res = await getUserInfoAPI();
+    commit('SET_USERINFO', res);
+    return res;
+  },
+  /**
+   * 用户退出登录
+   */
+  logout({ commit }: any) {
+    commit('SET_TOKEN', '');
+    commit('SET_USERINFO', {});
+    removeAllItem();
+    router.push('/login');
   },
 };
 
