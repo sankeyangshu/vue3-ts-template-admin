@@ -3,11 +3,12 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 17:51:27
+ * @LastEditTime: 2022-03-07 09:35:26
  */
 import { postLoginAPI, loginParams, getUserInfoAPI } from '@/api/login';
 import { TOKEN } from '@/constant';
 import { setItem, getItem, removeAllItem } from '@/utils/storage';
+import { setTimeStamp } from '@/utils/auth';
 import router from '@/router';
 
 const state = {
@@ -43,6 +44,7 @@ const actions = {
           const { data } = res;
           commit('SET_TOKEN', data.token); // 保存用户token
           setItem(TOKEN, data.token);
+          setTimeStamp(); // 保存登录时间
           resolve();
         })
         .catch((error) => {

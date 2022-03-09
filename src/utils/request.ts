@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 12:22:43
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 13:51:47
+ * @LastEditTime: 2022-03-08 17:05:04
  */
 
 // 导入axios
@@ -12,6 +12,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import store from '@/store';
 // element提示框组件
 import { ElMessage } from 'element-plus';
+import { isCheckTimeout } from './auth';
 
 // 1. 创建新的axios实例
 const instance = axios.create({
@@ -32,6 +33,12 @@ instance.interceptors.request.use(
     // 每次发送请求之前判断vuex中是否存在token,如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
     const token = store.getters.token;
     if (token) {
+      // 判断用户token是否超时
+      if (isCheckTimeout()) {
+        // 退出操作
+        store.dispatch('user/logout');
+        return Promise.reject(new Error('token 失效'));
+      }
       config.headers.Authorization = `Bearer ${token}`;
     }
     // 数据转换,判断数据格式为formdata还是json格式
@@ -73,7 +80,12 @@ instance.interceptors.response.use(
   },
   (error: AxiosError) => {
     // 响应失败，关闭等待提示
-    // 超时处理
+    // token超时处理
+    if (error.response && error.response.data && error.response.data.code === 401) {
+      // token超时
+      store.dispatch('user/logout');
+    }
+    // 提示错误信息
     if (JSON.stringify(error).includes('Network Error')) {
       ElMessage({
         message: '网络超时',

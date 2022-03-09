@@ -3,10 +3,12 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:27
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 16:17:35
+ * @LastEditTime: 2022-03-08 17:07:53
 -->
 <template>
-  <div class="app__main">123</div>
+  <div class="app__main">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts" setup>

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 17:53:33
+ * @LastEditTime: 2022-03-08 17:24:07
 -->
 <template>
   <div>
@@ -17,7 +17,7 @@
               :size="40"
               src="https://img.yzcdn.cn/vant/cat.jpeg"
             ></el-avatar>
-            <i class="el-icon-s-tools"></i>
+            <el-icon :size="22"><tools /></el-icon>
           </div>
           <template #dropdown>
             <el-dropdown-menu class="avatar__dropdown">
@@ -36,6 +36,7 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex';
+import { Tools } from '@element-plus/icons-vue';
 
 const store = useStore(); // 获取store实例
 

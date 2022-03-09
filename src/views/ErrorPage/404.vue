@@ -1,9 +1,9 @@
 <!--
- * @Description: 错误页面
+ * @Description: 404页面
  * @Author: 王振
- * @Date: 2021-10-27 09:07:01
+ * @Date: 2022-03-08 15:37:26
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-08 08:54:47
+ * @LastEditTime: 2022-03-08 15:37:28
 -->
 <template>
   <div class="wscn-http404-container">

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 10:12:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-04 15:34:10
+ * @LastEditTime: 2022-03-08 17:14:12
 -->
 <template>
   <div class="login">
@@ -13,7 +13,7 @@
         <el-form-item prop="userName">
           <el-input
             type="text"
-            prefix-icon="el-icon-user"
+            :prefix-icon="User"
             v-model="loginForm.userName"
             placeholder="请输入用户名"
           />
@@ -21,7 +21,7 @@
         <el-form-item prop="password">
           <el-input
             type="password"
-            prefix-icon="el-icon-unlock"
+            :prefix-icon="Unlock"
             v-model="loginForm.password"
             placeholder="请输入密码"
             show-password
@@ -47,6 +47,7 @@ import { reactive, ref } from 'vue';
 import { validatePassword } from '@/rules';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { User, Unlock } from '@element-plus/icons-vue';
 import type { ElForm } from 'element-plus';
 
 type FormInstance = InstanceType<typeof ElForm>; // 获取表单校验节点类型
