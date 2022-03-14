@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-07 17:29:16
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-09 13:21:47
+ * @LastEditTime: 2022-03-14 17:33:24
 -->
 <template>
   <el-menu
@@ -22,14 +22,11 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { filterRoutes, generateMenus } from '@/utils/route';
-import SidebarItem from './SidebarItem.vue';
 import { useStore } from 'vuex';
-import variables from '@/styles/variables.scss';
-console.log('file: SidebarMenu.vue ~ line 28 ~ variables', variables);
+import SidebarItem from './SidebarItem.vue';
 
 const router = useRouter(); // 获取路由实例
 const store = useStore(); // 获取vuex实例
-console.log(store.getters);
 
 const routes = computed(() => {
   const fRoutes = filterRoutes(router.getRoutes());

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 14:56:45
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-09 13:13:20
+ * @LastEditTime: 2022-03-14 17:30:02
 -->
 <template>
   <div class="app-wrapper">
@@ -27,13 +27,13 @@
 import Sidebar from './components/Sidebar/index.vue';
 import Navbar from './components/Navbar.vue';
 import AppMain from './components/AppMain.vue';
-import variables from '@/styles/variables.scss';
+import variables from '@/styles/variables.module.scss';
 import {} from 'vue';
 </script>
 
 <style lang="scss" scoped>
 @import '@/styles/mixins.scss';
-@import '@/styles/variables.scss';
+@import '@/styles/variables.module.scss';
 .app-wrapper {
   @include clearfix;
   position: relative;
