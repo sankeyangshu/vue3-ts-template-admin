@@ -3,10 +3,10 @@
  * @Author: 王振
  * @Date: 2022-03-04 14:56:45
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-14 17:30:02
+ * @LastEditTime: 2022-03-15 11:34:27
 -->
 <template>
-  <div class="app-wrapper">
+  <div class="app-wrapper" :class="[store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧导航栏 开始 -->
     <sidebar class="sidebar-container" :style="{ backgroundColor: variables.menuBg }" />
     <!-- 左侧导航栏 结束 -->
@@ -29,6 +29,9 @@ import Navbar from './components/Navbar.vue';
 import AppMain from './components/AppMain.vue';
 import variables from '@/styles/variables.module.scss';
 import {} from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore(); // 获取vuex实例
 </script>
 
 <style lang="scss" scoped>
@@ -47,5 +50,10 @@ import {} from 'vue';
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transition: width #{$sideBarDuration};
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>

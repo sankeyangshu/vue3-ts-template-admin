@@ -3,11 +3,19 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-08 17:24:07
+ * @LastEditTime: 2022-03-15 14:17:17
 -->
 <template>
   <div>
     <div class="navbar">
+      <!-- 收缩图标 开始 -->
+      <hamburger class="navbar__hamburger"></hamburger>
+      <!-- 收缩图标 结束 -->
+
+      <!-- 面包屑 开始 -->
+      <breadcrumb class="navbar__breadcrumb"></breadcrumb>
+      <!-- 面包屑 结束 -->
+
       <div class="navbar__right">
         <!-- 头像 开始 -->
         <el-dropdown class="avatar" trigger="click">
@@ -36,7 +44,8 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex';
-import { Tools } from '@element-plus/icons-vue';
+import Hamburger from '@/components/Hamburger/Hamburger.vue';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue';
 
 const store = useStore(); // 获取store实例
 
@@ -53,6 +62,22 @@ const OnClickLogout = () => {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  &__hamburger {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer; // cursor 属性规定要显示的光标的类型（形状）。
+    transition: background 0.5s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__breadcrumb {
+    float: left;
+  }
 
   &__right {
     display: flex;

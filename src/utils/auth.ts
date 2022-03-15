@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-27 09:22:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-07 09:33:39
+ * @LastEditTime: 2022-03-15 09:49:29
  */
 
 import store from '@/store';
@@ -42,4 +42,13 @@ export const isCheckTimeout = () => {
   // 缓存时间
   const timeStamp = getTimeStamp();
   return currentTime - timeStamp > TOKEN_TIMEOUT_VALUE;
+};
+
+/**
+ * @description: 判断是否为外部资源
+ * @param {string} path 资源路径
+ * @return {*} 判断结果
+ */
+export const isExternal = (path: string) => {
+  return /^(https?:|mailto:|tel:)/.test(path);
 };

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-09-23 15:14:02
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-08 15:55:47
+ * @LastEditTime: 2022-03-15 14:04:25
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import layout from '@/layout/index.vue'; // 页面模版
