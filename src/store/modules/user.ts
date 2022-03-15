@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-07 09:35:26
+ * @LastEditTime: 2022-03-15 15:23:03
  */
 import { postLoginAPI, loginParams, getUserInfoAPI } from '@/api/login';
 import { TOKEN } from '@/constant';
@@ -19,16 +19,16 @@ const state = {
 
 const mutations = {
   // 保存用户token
-  SET_TOKEN(state: any, value: string) {
-    state.token = value;
+  SET_TOKEN(state: any, token: string) {
+    state.token = token;
   },
   // 保存用户基本信息
-  SET_USERINFO(state: any, value: any) {
-    state.userInfo = value;
+  SET_USERINFO(state: any, userInfo: any) {
+    state.userInfo = userInfo;
   },
   // 报存用户权限角色
-  SET_ROLES: (state: any, value: any) => {
-    state.roles = value;
+  SET_ROLES: (state: any, roles: any) => {
+    state.roles = roles;
   },
 };
 

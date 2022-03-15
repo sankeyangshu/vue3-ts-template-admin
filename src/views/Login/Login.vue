@@ -3,42 +3,51 @@
  * @Author: 王振
  * @Date: 2021-10-26 10:12:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-08 17:14:12
+ * @LastEditTime: 2022-03-15 17:08:54
 -->
 <template>
-  <div class="login">
-    <div class="login__modal">
-      <el-form ref="userForm" :model="loginForm" status-icon :rules="loginRules">
-        <div class="login__modal__title">后台管理系统</div>
-        <el-form-item prop="userName">
-          <el-input
-            type="text"
-            :prefix-icon="User"
-            v-model="loginForm.userName"
-            placeholder="请输入用户名"
-          />
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            type="password"
-            :prefix-icon="Unlock"
-            v-model="loginForm.password"
-            placeholder="请输入密码"
-            show-password
-          />
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            :loading="loading"
-            type="primary"
-            class="login__modal__btn"
-            @click="OnClickLogin(userForm)"
-          >
-            登录
-          </el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+  <div class="login-container">
+    <el-form class="login-form" ref="userForm" :model="loginForm" :rules="loginRules">
+      <div class="title-container">
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <LangSelect class="lang-select" effect="light"></LangSelect>
+      </div>
+
+      <el-form-item prop="userName">
+        <span class="svg-container">
+          <svg-icon icon="user" />
+        </span>
+        <el-input type="text" v-model="loginForm.userName" placeholder="请输入用户名" />
+      </el-form-item>
+
+      <el-form-item prop="password">
+        <span class="svg-container">
+          <svg-icon icon="password" />
+        </span>
+        <el-input
+          placeholder="请输入密码"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password"
+        />
+        <span class="show-pwd" @click="onChangePwdType">
+          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" />
+        </span>
+      </el-form-item>
+
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="OnClickLogin(userForm)"
+      >
+        {{ $t('msg.login.loginBtn') }}
+      </el-button>
+
+      <!-- 底部提示 开始 -->
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
+      <!-- 底部提示 结束 -->
+    </el-form>
   </div>
 </template>
 
@@ -47,8 +56,9 @@ import { reactive, ref } from 'vue';
 import { validatePassword } from '@/rules';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { User, Unlock } from '@element-plus/icons-vue';
+import { useI18n } from 'vue-i18n';
 import type { ElForm } from 'element-plus';
+import LangSelect from '@/components/LangSelect/LangSelect.vue';
 
 type FormInstance = InstanceType<typeof ElForm>; // 获取表单校验节点类型
 
@@ -59,11 +69,12 @@ const loginForm = reactive({
 });
 
 // 登录校验规则
+const i18n = useI18n();
 const loginRules = reactive({
   userName: [
     {
       required: true,
-      message: '请输入用户名',
+      message: i18n.t('msg.login.usernameRule'),
       trigger: 'blur',
     },
   ],
@@ -75,6 +86,18 @@ const loginRules = reactive({
     },
   ],
 });
+
+// 处理密码框文本显示状态
+const passwordType = ref('password');
+const onChangePwdType = () => {
+  console.log(345);
+
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text';
+  } else {
+    passwordType.value = 'password';
+  }
+};
 
 // 用户登录流程
 const store = useStore(); // vuex仓库
@@ -101,29 +124,102 @@ const OnClickLogin = (formEl: FormInstance | undefined) => {
 </script>
 
 <style lang="scss" scoped>
-.login {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9fcff;
-  // background-color: #2d3a4b;
-  &__modal {
-    width: 500px;
-    padding: 50px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 10px 3px #c7c9cb4d;
-    &__title {
-      font-size: 50px;
-      line-height: 1.5;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
+$cursor: #fff;
+
+.login-container {
+  min-height: 100%;
+  width: 100%;
+  background-color: $bg;
+  overflow: hidden;
+
+  .login-form {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    padding: 160px 35px 0;
+    margin: 0 auto;
+    overflow: hidden;
+
+    ::v-deep .el-form-item {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      color: #454545;
+    }
+
+    ::v-deep .el-input {
+      display: inline-block;
+      height: 47px;
+      width: 85%;
+
+      input {
+        background: transparent;
+        border: 0px;
+        -webkit-appearance: none;
+        border-radius: 0px;
+        padding: 12px 5px 12px 15px;
+        color: $light_gray;
+        height: 47px;
+        caret-color: $cursor;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .tips {
+    font-size: 16px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+
+    span {
+      &:first-of-type {
+        margin-right: 16px;
+      }
+    }
+  }
+
+  .svg-container {
+    padding: 6px 5px 6px 15px;
+    color: $dark_gray;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .title-container {
+    position: relative;
+
+    .title {
+      font-size: 26px;
+      color: $light_gray;
+      margin: 0px auto 40px auto;
       text-align: center;
-      margin-bottom: 30px;
+      font-weight: bold;
     }
-    &__btn {
-      width: 100%;
+
+    ::v-deep .lang-select {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      background-color: white;
+      font-size: 22px;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
     }
+  }
+
+  .show-pwd {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    font-size: 16px;
+    color: $dark_gray;
+    cursor: pointer;
+    user-select: none;
   }
 }
 </style>

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-15 14:11:03
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 15:01:18
+ * @LastEditTime: 2022-03-15 17:22:57
 -->
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
@@ -11,10 +11,12 @@
       <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
         <!-- 不可点击的面包屑 -->
         <span class="no-redirect" v-if="index === breadcrumbData.length - 1">
-          {{ item.meta.title }}
+          {{ generateTitle(item.meta.title) }}
         </span>
         <!-- 可点击的面包屑 -->
-        <span class="redirect" v-else @click="OnClicLink(item)">{{ item.meta.title }}</span>
+        <span class="redirect" v-else @click="OnClicLink(item)">
+          {{ generateTitle(item.meta.title) }}
+        </span>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -24,6 +26,7 @@
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { generateTitle } from '@/utils/i18n';
 
 // 获取路由实例
 const router = useRouter();

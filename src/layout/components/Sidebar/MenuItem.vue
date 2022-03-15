@@ -3,20 +3,20 @@
  * @Author: 王振
  * @Date: 2022-03-09 11:20:23
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 13:38:16
+ * @LastEditTime: 2022-03-15 17:21:23
 -->
 <template>
-  <!-- <i v-if="icon.includes('el-icon')" class="sub-el-icon" :class="icon"></i> -->
   <el-icon v-if="icon.includes('el-icon')" class="sub-el-icon">
     <component :is="icon.substring(8)"></component>
   </el-icon>
   <svg-icon v-else :icon="icon"></svg-icon>
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from 'vue';
-// import { Location } from '@element-plus/icons-vue';
+import { generateTitle } from '@/utils/i18n';
+
 defineProps({
   title: {
     type: String,

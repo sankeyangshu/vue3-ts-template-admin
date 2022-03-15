@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 14:17:17
+ * @LastEditTime: 2022-03-15 17:12:00
 -->
 <template>
   <div>
@@ -17,6 +17,7 @@
       <!-- 面包屑 结束 -->
 
       <div class="navbar__right">
+        <LangSelect class="navbar__right__item hover__effect"></LangSelect>
         <!-- 头像 开始 -->
         <el-dropdown class="avatar" trigger="click">
           <div class="avatar__wrapper">
@@ -30,9 +31,11 @@
           <template #dropdown>
             <el-dropdown-menu class="avatar__dropdown">
               <router-link to="/">
-                <el-dropdown-item> 首页 </el-dropdown-item>
+                <el-dropdown-item> {{ $t('msg.navBar.home') }} </el-dropdown-item>
               </router-link>
-              <el-dropdown-item divided @click="OnClickLogout"> 退出登录 </el-dropdown-item>
+              <el-dropdown-item divided @click="OnClickLogout">
+                {{ $t('msg.navBar.logout') }}
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -46,6 +49,7 @@
 import { useStore } from 'vuex';
 import Hamburger from '@/components/Hamburger/Hamburger.vue';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue';
+import LangSelect from '@/components/LangSelect/LangSelect.vue';
 
 const store = useStore(); // 获取store实例
 
@@ -84,6 +88,19 @@ const OnClickLogout = () => {
     align-items: center;
     float: right;
     padding-right: 16px;
+
+    ::v-deep &__item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover__effect {
+        cursor: pointer;
+      }
+    }
+
     ::v-deep .avatar {
       cursor: pointer;
       &__wrapper {
