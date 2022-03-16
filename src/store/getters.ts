@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-10-26 15:26:30
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 13:05:34
+ * @LastEditTime: 2022-03-16 16:55:58
  */
 import { getItem } from '@/utils/storage';
 import { generateColors } from '@/utils/theme';
@@ -16,6 +16,7 @@ const getters = {
   sidebarOpened: (state: any) => state.app.sidebarOpened, // 左侧菜单收缩状态
   language: (state: any) => state.app.language, // 国际化-选中语言
   mainColor: (state: any) => state.app.mainColor, // 主题色
+  tagsViewList: (state: any) => state.app.tagsViewList, // 快捷标签
 };
 
 export default getters;

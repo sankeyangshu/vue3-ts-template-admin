@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 14:44:15
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 11:08:05
+ * @LastEditTime: 2022-03-16 16:24:46
  */
 
 // 用户token
@@ -23,3 +23,6 @@ export const MAIN_COLOR = 'mainColor';
 
 // 默认主题色
 export const DEFAULT_COLOR = '#409eff';
+
+// tags
+export const TAGS_VIEW = 'tagsView';

@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 14:56:45
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 13:02:10
+ * @LastEditTime: 2022-03-16 17:14:24
 -->
 <template>
   <div class="app-wrapper" :class="[store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
@@ -14,6 +14,9 @@
       <!-- 顶部面包屑 开始 -->
       <div class="fixed-header">
         <navbar />
+        <!-- 快捷标签 开始 -->
+        <TagsView></TagsView>
+        <!-- 快捷标签 结束 -->
       </div>
       <!-- 顶部面包屑 结束 -->
       <!-- 内容区 开始 -->
@@ -24,11 +27,12 @@
 </template>
 
 <script lang="ts" setup>
+import {} from 'vue';
+import { useStore } from 'vuex';
 import Sidebar from './components/Sidebar/index.vue';
 import Navbar from './components/Navbar.vue';
 import AppMain from './components/AppMain.vue';
-import {} from 'vue';
-import { useStore } from 'vuex';
+import TagsView from '@/components/TagsView/TagsView.vue';
 
 const store = useStore(); // 获取vuex实例
 </script>
