@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2021-09-23 15:14:02
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 14:04:25
+ * @LastEditTime: 2022-03-16 16:14:34
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import layout from '@/layout/index.vue'; // 页面模版
@@ -71,10 +71,6 @@ const privateRoutes: Array<RouteRecordRaw> = [
 const publicRoutes: Array<RouteRecordRaw> = [
   {
     path: '/login',
-    name: 'login',
-    meta: {
-      title: '登录',
-    },
     component: () => import('@/views/Login/Login.vue'),
   },
   {

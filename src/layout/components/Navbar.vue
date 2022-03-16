@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 13:21:29
+ * @LastEditTime: 2022-03-16 13:51:00
 -->
 <template>
   <div>
@@ -17,6 +17,7 @@
       <!-- 面包屑 结束 -->
 
       <div class="navbar__right">
+        <HeaderSearch class="navbar__right__item hover__effect"></HeaderSearch>
         <ScreenFull class="navbar__right__item hover__effect"></ScreenFull>
         <ThemeSelect class="navbar__right__item hover__effect"></ThemeSelect>
         <LangSelect class="navbar__right__item hover__effect"></LangSelect>
@@ -54,6 +55,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue';
 import LangSelect from '@/components/LangSelect/LangSelect.vue';
 import ThemeSelect from '@/components/ThemeSelect/ThemeSelect.vue';
 import ScreenFull from '@/components/ScreenFull/ScreenFull.vue';
+import HeaderSearch from '@/components/HeaderSearch/HeaderSearch.vue';
 
 const store = useStore(); // 获取store实例
 

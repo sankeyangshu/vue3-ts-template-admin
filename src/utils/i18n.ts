@@ -3,9 +3,11 @@
  * @Author: 王振
  * @Date: 2022-03-15 17:17:16
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 17:19:19
+ * @LastEditTime: 2022-03-16 16:00:12
  */
 import i18n from '@/i18n';
+import store from '@/store';
+import { watch } from 'vue';
 
 /**
  * @description: 国际化-标题
@@ -14,4 +16,18 @@ import i18n from '@/i18n';
  */
 export const generateTitle = (title: string) => {
   return i18n.global.t('msg.route.' + title);
+};
+
+/**
+ * @description: 监听语言变化，同时执行callback
+ * @param {Function} cbs 回调函数们
+ * @return {*}
+ */
+export const watchSwitchLang = (...cbs: Function[]) => {
+  watch(
+    () => store.getters.language,
+    () => {
+      cbs.forEach((cb) => cb(store.getters.language));
+    }
+  );
 };
