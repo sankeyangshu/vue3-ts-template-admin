@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:28:29
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 13:18:53
+ * @LastEditTime: 2022-03-16 13:08:22
 -->
 <template>
   <div>
@@ -43,6 +43,10 @@ const logoHeight = 44; // logo高度
     line-height: 50px;
     font-size: 16px;
     white-space: nowrap;
+  }
+
+  .el-avatar {
+    --el-avatar-bg-color: none;
   }
 }
 </style>

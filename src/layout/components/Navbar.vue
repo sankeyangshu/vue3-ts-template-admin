@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-04 15:27:38
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 17:12:00
+ * @LastEditTime: 2022-03-16 10:11:02
 -->
 <template>
   <div>
@@ -17,6 +17,7 @@
       <!-- 面包屑 结束 -->
 
       <div class="navbar__right">
+        <ThemeSelect class="navbar__right__item hover__effect"></ThemeSelect>
         <LangSelect class="navbar__right__item hover__effect"></LangSelect>
         <!-- 头像 开始 -->
         <el-dropdown class="avatar" trigger="click">
@@ -50,6 +51,7 @@ import { useStore } from 'vuex';
 import Hamburger from '@/components/Hamburger/Hamburger.vue';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue';
 import LangSelect from '@/components/LangSelect/LangSelect.vue';
+import ThemeSelect from '@/components/ThemeSelect/ThemeSelect.vue';
 
 const store = useStore(); // 获取store实例
 
