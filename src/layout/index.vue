@@ -3,19 +3,23 @@
  * @Author: 王振
  * @Date: 2022-03-04 14:56:45
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 17:14:24
+ * @LastEditTime: 2022-03-21 18:06:02
 -->
 <template>
   <div class="app-wrapper" :class="[store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧导航栏 开始 -->
-    <sidebar class="sidebar-container" :style="{ backgroundColor: store.getters.cssVar.menuBg }" />
+    <sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: store.getters.cssVar.menuBg }"
+    />
     <!-- 左侧导航栏 结束 -->
     <div class="main-container">
       <!-- 顶部面包屑 开始 -->
       <div class="fixed-header">
         <navbar />
         <!-- 快捷标签 开始 -->
-        <TagsView></TagsView>
+        <TagsView id="guide-tags"></TagsView>
         <!-- 快捷标签 结束 -->
       </div>
       <!-- 顶部面包屑 结束 -->

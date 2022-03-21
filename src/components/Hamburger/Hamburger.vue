@@ -3,10 +3,10 @@
  * @Author: 王振
  * @Date: 2022-03-15 09:19:07
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 11:29:07
+ * @LastEditTime: 2022-03-21 18:18:07
 -->
 <template>
-  <div class="hamburger-container" @click="OnClickToggle">
+  <div id="guide-hamburger" class="hamburger-container" @click="OnClickToggle">
     <svg-icon class="hamburger" :icon="icon"></svg-icon>
   </div>
 </template>

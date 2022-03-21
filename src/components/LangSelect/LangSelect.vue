@@ -3,13 +3,15 @@
  * @Author: 王振
  * @Date: 2022-03-15 15:23:37
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 17:25:29
+ * @LastEditTime: 2022-03-21 18:24:52
 -->
 <template>
   <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
     <div>
       <el-tooltip :content="$t('msg.navBar.lang')" :effect="effect">
-        <svg-icon icon="language" />
+        <span id="guide-lang">
+          <svg-icon icon="language" />
+        </span>
       </el-tooltip>
     </div>
     <template #dropdown>

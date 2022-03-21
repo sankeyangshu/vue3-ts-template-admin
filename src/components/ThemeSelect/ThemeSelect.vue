@@ -3,13 +3,15 @@
  * @Author: 王振
  * @Date: 2022-03-16 10:04:06
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 10:43:34
+ * @LastEditTime: 2022-03-21 18:25:02
 -->
 <template>
   <el-dropdown v-bind="$attrs" trigger="click" class="theme" @command="handleSetTheme">
     <div>
       <el-tooltip :content="$t('msg.navBar.themeChange')">
-        <svg-icon id="guide-theme" icon="change-theme" />
+        <span id="guide-theme">
+          <svg-icon icon="change-theme" />
+        </span>
       </el-tooltip>
     </div>
     <template #dropdown>

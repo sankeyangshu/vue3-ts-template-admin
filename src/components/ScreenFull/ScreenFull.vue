@@ -3,10 +3,10 @@
  * @Author: 王振
  * @Date: 2022-03-16 13:15:31
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 13:30:38
+ * @LastEditTime: 2022-03-21 18:19:49
 -->
 <template>
-  <div @click="OnClickToggle">
+  <div id="guide-full" @click="OnClickToggle">
     <svg-icon :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"></svg-icon>
   </div>
 </template>

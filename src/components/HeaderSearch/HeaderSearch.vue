@@ -3,13 +3,13 @@
  * @Author: 王振
  * @Date: 2022-03-16 13:35:32
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-16 16:16:40
+ * @LastEditTime: 2022-03-21 18:33:12
 -->
 <template>
-  <div class="header__search" :class="{ show: isShow }">
-    <block @click.stop="OnClickShow">
-      <svg-icon className="search-icon" icon="search"></svg-icon>
-    </block>
+  <div id="guide-search" class="header__search" :class="{ show: isShow }">
+    <span @click.stop="OnClickShow">
+      <svg-icon className="search-icon" icon="search" />
+    </span>
     <el-select
       v-model="search"
       placeholder="search"
