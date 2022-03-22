@@ -3,7 +3,7 @@
  * @Author: 王振
  * @Date: 2022-03-15 10:02:33
  * @LastEditors: 王振
- * @LastEditTime: 2022-03-15 13:56:24
+ * @LastEditTime: 2022-03-22 18:42:40
  */
 import { App } from 'vue';
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
@@ -16,6 +16,6 @@ const svgRequire = require.context('./svg', false, /\.svg$/);
 // 遍历图标，把图标作为 request 传入到 require 导入函数中，完成本地 svg 图标的导入
 svgRequire.keys().forEach((svgIcon) => svgRequire(svgIcon));
 
-export default (app: App) => {
+export default (app: App<Element>) => {
   app.component('svg-icon', SvgIcon);
 };
