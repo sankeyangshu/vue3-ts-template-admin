@@ -31,7 +31,7 @@ vue3 + ts + sass + axios + es6/7。。。
 你需要在本地安装 [node](http://nodejs.org/) ，node 需要 12.0 以上版本
 
 ```bash
-git clone https://github.com/1260323835/vue3-ts-template-admin.git
+git clone https://github.com/sankeyangshu/vue3-ts-template-admin.git
 cd vue3-ts-template-admin
 npm install
 npm run serve
@@ -46,4 +46,4 @@ npm run serve
 
 #### 许可证
 
-[MIT License](https://github.com/1260323835/vue3-ts-template-admin/blob/main/LICENSE)
+[MIT License](https://github.com/sankeyangshu/vue3-ts-template-admin/blob/main/LICENSE)
