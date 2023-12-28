@@ -6,7 +6,7 @@
 
 [vue3-ts-template-admin] 现已升级为 [ **vue-template-admin** ]，最新版使用 Vite + TS 构建，Pinia 作为状态管理工具，更轻量级、高性能！
 
-请移步至新仓库：[vue-template-admin](https://github.com/sankeyangshu-labs/vue-template-admin)
+请移步至新仓库：[vue-template-admin](https://github.com/sankeyangshu/vue-template-admin)
 
 ### ---------------------------------------------
 
